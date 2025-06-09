@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "Premium Service",
+    "price": 99.99,
+    "description": "Our premium service offering",
+    "image": "https://via.placeholder.com/300x200"
+  },
+  {
+    "id": "2",
+    "name": "Basic Service",
+    "price": 49.99,
+    "description": "Our basic service offering",
+    "image": "https://via.placeholder.com/300x200"
+  }
+]
