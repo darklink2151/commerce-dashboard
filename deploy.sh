@@ -24,6 +24,21 @@ if ! command -v node &> /dev/null; then
     fi
 fi
 
+# Install DigitalOcean CLI if on DigitalOcean
+if $IS_DIGITALOCEAN; then
+    if ! command -v doctl &> /dev/null; then
+        echo "📦 Installing DigitalOcean CLI..."
+        cd /tmp
+        DOCTL_VERSION=$(curl -s https://api.github.com/repos/digitalocean/doctl/releases/latest | grep tag_name | cut -d '"' -f 4)
+        curl -sL https://github.com/digitalocean/doctl/releases/download/$DOCTL_VERSION/doctl-$DOCTL_VERSION-linux-amd64.tar.gz | tar -xz
+        sudo mv doctl /usr/local/bin
+        cd -
+        echo "✅ DigitalOcean CLI installed successfully"
+    else
+        echo "✅ DigitalOcean CLI already installed"
+    fi
+fi
+
 # Install dependencies
 echo "📦 Installing dependencies..."
 npm install
