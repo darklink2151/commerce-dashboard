@@ -7,6 +7,11 @@ echo "======================================="
 if [ -f /etc/digitalocean ]; then
     echo "✅ Detected DigitalOcean environment"
     IS_DIGITALOCEAN=true
+elif [ "$(hostname)" == "commerce-dashboard" ] || [ -f /var/www/commerce-dashboard/.is_server ]; then
+    echo "✅ Detected server environment"
+    IS_DIGITALOCEAN=true
+    # Create a marker file so we know this is our server
+    touch /var/www/commerce-dashboard/.is_server
 else
     echo "📱 Local environment detected"
     IS_DIGITALOCEAN=false
@@ -15,7 +20,7 @@ fi
 # Install Node.js if not present
 if ! command -v node &> /dev/null; then
     echo "📦 Installing Node.js..."
-    if $IS_DIGITALOCEAN; then
+    if $IS_DIGITALOCEAN || [ "$(whoami)" == "root" ]; then
         curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
         sudo apt-get install -y nodejs
     else

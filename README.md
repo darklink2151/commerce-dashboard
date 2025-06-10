@@ -1,24 +1,74 @@
-# Commerce Dashboard
+# Digital Marketplace Platform
 
-A simple, free e-commerce dashboard built for DigitalOcean deployment with Stripe payment integration.
+A comprehensive digital marketplace platform specializing in secure digital product delivery, with advanced features for software licensing, subscription management, and anti-piracy protection. Built for professional deployment with enterprise-grade security.
 
-## 🚀 Features
+## 🎯 Digital Product Focus
 
-- **Modern UI**: Clean, responsive design that works on all devices
-- **Stripe Integration**: Secure payment processing with your existing Stripe link
-- **Real-time Dashboard**: Live analytics and order management
-- **Order Management**: View, update, and track customer orders
-- **Export Functionality**: Download order data as CSV
-- **Mobile Responsive**: Optimized for all screen sizes
-- **Free to Run**: Uses minimal resources, perfect for DigitalOcean's basic droplets
+This platform is specifically designed for selling:
+- **Software & Applications**: With license key generation and device activation tracking
+- **Digital Content**: E-books, courses, media files with secure delivery
+- **Subscription Services**: Recurring billing for software access, content libraries
+- **Digital Downloads**: Secure, time-limited download links with access codes
+- **Hybrid Products**: Combining digital and physical product sales
+
+## 🚀 Key Features
+
+### 💳 Payment & Commerce
+- **Stripe Integration**: Complete payment processing with webhooks
+- **Multiple Product Types**: Digital, physical, and subscription products
+- **Checkout Sessions**: Optimized for conversion with Stripe Checkout
+- **Payment Intents**: Support for complex payment flows
+- **Multi-Currency**: Global payment support
+
+### 🔐 Digital Delivery & Security
+- **Secure File Delivery**: Time-limited, encrypted download tokens
+- **Access Code Protection**: Email-based verification for downloads
+- **Download Monitoring**: Track and limit download attempts
+- **Anti-Piracy Features**: VPN detection, bot protection, suspicious activity monitoring
+- **Digital Watermarking**: Embed customer information in high-value files
+- **Rate Limiting**: Prevent abuse and automated attacks
+
+### 🔑 License Management
+- **Automated License Generation**: Unique license keys for software products
+- **Device Activation Tracking**: Monitor and control software installations
+- **License Validation API**: Real-time license verification
+- **Activation Limits**: Control how many devices can use each license
+- **License Analytics**: Track usage patterns and compliance
+
+### 📊 Analytics & Monitoring
+- **Real-time Dashboard**: Live order and download analytics
+- **Security Monitoring**: Track download patterns and security threats
+- **Customer Analytics**: Understand purchasing behavior
+- **Revenue Tracking**: Detailed financial reporting
+- **Export Capabilities**: CSV exports for external analysis
+
+### 📧 Communication
+- **Automated Email Delivery**: Instant download instructions with access codes
+- **License Notifications**: Activation confirmations and alerts
+- **Order Confirmations**: Professional purchase receipts
+- **Security Alerts**: Automated threat notifications
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Node.js with Express
-- **Frontend**: Vanilla HTML/CSS/JavaScript (no frameworks = faster & lighter)
-- **Database**: JSON files (simple and portable)
-- **Payments**: Stripe integration
-- **Hosting**: Optimized for DigitalOcean
+### Backend
+- **Node.js with Express**: High-performance server framework
+- **MongoDB with Mongoose**: Scalable document database
+- **Stripe SDK**: Complete payment processing
+- **Nodemailer**: Professional email delivery
+- **Express Rate Limit**: DDoS and abuse protection
+
+### Frontend
+- **Vanilla JavaScript**: Lightweight, fast-loading interface
+- **Responsive Design**: Mobile-first, accessible UI
+- **Progressive Enhancement**: Works with JavaScript disabled
+- **Real-time Updates**: WebSocket integration for live data
+
+### Security
+- **Helmet.js**: Security headers and OWASP protection
+- **HTTPS Enforcement**: SSL/TLS encryption
+- **Input Validation**: Comprehensive request sanitization
+- **IP Logging**: Track and analyze access patterns
+- **Token-based Authentication**: Secure API access
 
 ## 📦 Installation
 
