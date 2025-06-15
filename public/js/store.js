@@ -196,7 +196,7 @@ class Store {
     initializeStripe() {
         // Initialize Stripe (you'll need to add your publishable key)
         if (window.Stripe) {
-            this.stripe = Stripe('pk_test_your_publishable_key_here');
+            this.stripe = Stripe('pk_test_51OzMZVPxRyNrSgLBMVEpzXQNOeAqQXGq1Hn8Tn9fUbNYwkQJdVyYdTGDtSLzwrLnmSMKBCcNPQrBk5ZQfcbBxvJq00HCcjYBLJ');
         }
     }
 

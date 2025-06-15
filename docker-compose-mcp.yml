@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mcp:
+    image: nginx:alpine
+    container_name: mcp-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./mcp:/usr/share/nginx/html
+      - ./commerce-dashboard-data:/mcp/commerce_dashboard
+    environment:
+      - NGINX_HOST=mcp.local
+      - NGINX_PORT=80
+    restart: unless-stopped
+    networks:
+      - mcp-network
+
+  warp:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-warp
+    volumes:
+      - ./warp-local-mcp-config.json:/etc/cloudflare-warp/config.json:ro
+    restart: unless-stopped
+    depends_on:
+      - mcp
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge 

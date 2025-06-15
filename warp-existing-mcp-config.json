@@ -1,0 +1,36 @@
+{
+  "": {
+    "command": "",
+    "args": [],
+    "env": {},
+    "working_directory": null,
+    "start_on_launch": true
+  },
+  "tunnel": {
+    "exclude_ips": [],
+    "include_ips": [
+      "0.0.0.0/0"
+    ],
+    "exclude_hosts": [],
+    "include_hosts": [
+      "*"
+    ],
+    "protocol": "auto",
+    "fallback_domains": []
+  },
+  "mode": "warp",
+  "dns": {
+    "upstream": [
+      "1.1.1.1",
+      "1.0.0.1"
+    ],
+    "fallback": [
+      "8.8.8.8",
+      "8.8.4.4"
+    ]
+  },
+  "warp": {
+    "start_on_launch": true,
+    "always_on": false
+  }
+} 

@@ -4,7 +4,7 @@ echo "🚀 MCP Server Update Script"
 echo "=========================="
 
 # Configuration
-MCP_SERVER_IP="YOUR_MCP_SERVER_IP"  # Replace with your MCP server IP
+MCP_SERVER_IP="137.184.53.98"  # Updated with your actual server IP
 SSH_KEY="~/.ssh/id_ed25519_github"
 REMOTE_DIR="/var/www/mcp"
 LOCAL_PRODUCTS_FILE="data/products.json"
