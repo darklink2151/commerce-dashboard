@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commerce Store</title>
+    <title>Enhanced Commerce Store</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-container">
-                <h1 class="logo">🛍️ Commerce Store</h1>
+                <h1 class="logo">🛍️ Enhanced Commerce Store</h1>
                 <div class="nav-links">
                     <a href="/">Store</a>
                     <a href="/dashboard">Dashboard</a>
+                    <div class="cart-icon" onclick="openCartModal()">
+                        🛒 Cart
+                        <span id="cart-count" class="cart-count" style="display: none;">0</span>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -23,14 +28,47 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h2>Welcome to Our Store</h2>
-                <p>Discover amazing products and services</p>
+                <h2>Welcome to Our Enhanced Store</h2>
+                <p>Discover amazing products with smart recommendations and exclusive discounts</p>
+                <div class="hero-features">
+                    <div class="feature-badge">🎯 Smart Recommendations</div>
+                    <div class="feature-badge">💰 Exclusive Discounts</div>
+                    <div class="feature-badge">⚡ Instant Delivery</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-controls">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search products..." />
+                        <button id="search-btn" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="filter-controls">
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                        </select>
+                        <select id="type-filter">
+                            <option value="all">All Types</option>
+                            <option value="digital">Digital</option>
+                            <option value="subscription">Subscription</option>
+                        </select>
+                        <select id="sort-filter">
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="featured-products">
             <div class="container">
-                <h2>Featured Items</h2>
+                <h2>🌟 Featured Items</h2>
                 <div class="featured-slider" id="featured-slider">
                     <!-- Featured products will be loaded here by JavaScript -->
                 </div>
@@ -46,6 +84,42 @@
             </div>
         </section>
     </main>
+
+    <!-- Enhanced Cart Modal -->
+    <div id="cartModal" class="modal cart-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h3>🛒 Shopping Cart</h3>
+            
+            <div id="cart-content">
+                <!-- Cart content will be rendered here -->
+            </div>
+            
+            <!-- Discount Code Section -->
+            <div id="discount-section" class="discount-section">
+                <h4>💰 Have a discount code?</h4>
+                <div class="discount-input-group">
+                    <input type="text" id="discount-code" placeholder="Enter discount code" class="discount-input">
+                    <button type="button" id="apply-discount" class="btn btn-secondary">Apply</button>
+                </div>
+                <div id="discount-message" class="discount-message"></div>
+                <div id="discount-applied" class="discount-applied" style="display: none;">
+                    <span class="discount-info"></span>
+                    <button type="button" id="remove-discount" class="remove-discount">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-modal-content">
+            <span class="close">&times;</span>
+            <div id="product-detail-content">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Payment Modal -->
     <div id="paymentModal" class="modal">
@@ -78,10 +152,216 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Commerce Store. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Enhanced Commerce</h4>
+                    <p>Your trusted digital marketplace with smart features and secure delivery.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Smart Recommendations</li>
+                        <li>Secure Digital Delivery</li>
+                        <li>Instant Downloads</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Security</h4>
+                    <ul>
+                        <li>SSL Encryption</li>
+                        <li>Anti-Piracy Protection</li>
+                        <li>Secure Payments</li>
+                        <li>Privacy Protection</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Enhanced Commerce Store. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <script src="js/enhanced_features.js"></script>
+    <script src="js/enhanced-store.js"></script>
     <script src="js/store.js"></script>
+    
+    <style>
+        .hero-features {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .feature-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .search-section {
+            background: #f8fafc;
+            padding: 30px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .search-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-controls select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            padding: 8px 16px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .cart-icon:hover {
+            background: #2563eb;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-modal .modal-content {
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .discount-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .discount-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .discount-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+        
+        .discount-message {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .discount-applied {
+            margin-top: 10px;
+            padding: 10px;
+            background: #dcfce7;
+            border: 1px solid #16a34a;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .remove-discount {
+            background: none;
+            border: none;
+            color: #dc2626;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+            color: #6b7280;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+    </style>
 </body>
 </html> 

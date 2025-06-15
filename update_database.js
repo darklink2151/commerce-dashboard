@@ -3,44 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+// Import the actual Product model
+const Product = require('./models/Product');
+
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/commerce-dashboard';
-
-// Import product schema
-const productSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true },
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  description: String,
-  image: String,
-  category: String,
-  type: { type: String, enum: ['physical', 'digital', 'subscription'], default: 'physical' },
-  featured: { type: Boolean, default: false },
-  digitalMeta: {
-    fileUrl: String,
-    fileName: String,
-    fileSize: Number,
-    downloadLimit: Number,
-    expirationDays: Number,
-    licenseType: String,
-    version: String,
-    requirements: [String],
-    features: [String],
-    preview: {
-      screenshots: [String],
-      demoVideo: String,
-      samplePages: [String]
-    }
-  },
-  subscriptionMeta: {
-    interval: String,
-    intervalCount: Number,
-    trialDays: Number,
-    features: [String]
-  }
-});
-
-const Product = mongoose.model('Product', productSchema);
 
 // Read products from JSON file
 const loadProducts = () => {
@@ -67,9 +34,29 @@ const updateDatabase = async () => {
     await Product.deleteMany({});
     console.log('🗑️ Cleared existing products');
     
+    // Process products to ensure they have the correct fields
+    const processedProducts = products.map(product => {
+      // Remove the 'id' field and let MongoDB generate _id
+      const { id, ...productData } = product;
+      
+      // Ensure isActive is set to true
+      productData.isActive = true;
+      
+      // Ensure required fields are present
+      if (!productData.type) {
+        productData.type = 'digital';
+      }
+      
+      return productData;
+    });
+    
     // Insert new products
-    const result = await Product.insertMany(products);
+    const result = await Product.insertMany(processedProducts);
     console.log(`✅ Inserted ${result.length} products into database`);
+    
+    // Verify products are active
+    const activeCount = await Product.countDocuments({ isActive: true });
+    console.log(`✅ ${activeCount} products are active and ready for sale`);
     
     console.log('📊 Database update complete!');
   } catch (error) {
