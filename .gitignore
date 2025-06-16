@@ -194,3 +194,24 @@ wheels/
 *.egg
 MANIFEST
 
+# MCP and Warp related files
+apply-warp-config.sh
+docker-compose-mcp.yml
+docker-compose-warp-mcp.yml
+docker-compose-warp.yml
+setup-local-mcp.sh
+setup-warp-for-mcp.sh
+setup-warp-mcp-access.sh
+setup-warp.sh
+update_mcp.sh
+warp-config.json
+warp-existing-mcp-config.json
+warp-local-mcp-config.json
+warp-mcp-config.json
+
+# AI art project files
+src/
+static/
+templates/
+requirements.txt
+
