@@ -1,8 +1,0 @@
-services:
-  cloudflare-warp:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflare-warp
-    command: tunnel --no-autoupdate --url http://host.docker.internal:8888
-    restart: unless-stopped
-    extra_hosts:
-      - "host.docker.internal:host-gateway" 
