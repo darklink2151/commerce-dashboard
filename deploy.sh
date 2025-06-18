@@ -89,7 +89,7 @@ if $IS_DIGITALOCEAN; then
         sudo tee /etc/nginx/sites-available/commerce-dashboard > /dev/null <<EOF
 server {
     listen 80;
-    server_name _;
+    server_name cybersucesstore.shop;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -112,8 +112,8 @@ EOF
     fi
     
     echo "🎉 Deployment complete!"
-    echo "📊 Dashboard: http://$(curl -s ifconfig.me)/dashboard"
-    echo "🛍️  Store: http://$(curl -s ifconfig.me)/"
+    echo "�� Dashboard: http://cybersucesstore.shop/dashboard"
+    echo "🛍️  Store: http://cybersucesstore.shop/"
     echo "📝 Logs: pm2 logs commerce-dashboard"
     
 else

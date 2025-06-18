@@ -1,8 +1,8 @@
 # DigitalOcean Deployment Information
 
 ## Server Details
-- IP Address: 137.184.53.98
-- Droplet Name: commerce-dashboard
+- IP Address: 67.205.160.107
+- Droplet Name: commerce-dashboard-new
 - Size: s-1vcpu-1gb-amd ($7/month)
 - Region: nyc1
 - OS: Ubuntu 22.04 LTS
@@ -11,13 +11,13 @@
 ## Access Commands
 ```bash
 # SSH to server
-ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98
+ssh -i ~/.ssh/id_ed25519_github root@67.205.160.107
 
 # Check application status
-ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98 "pm2 status"
+ssh -i ~/.ssh/id_ed25519_github root@67.205.160.107 "pm2 status"
 
 # View logs
-ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98 "pm2 logs commerce-dashboard"
+ssh -i ~/.ssh/id_ed25519_github root@67.205.160.107 "pm2 logs commerce-dashboard"
 ```
 
 ## Deployment Scripts
@@ -26,8 +26,8 @@ ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98 "pm2 logs commerce-dashboard"
 - `update.sh` - Updates the application after changes
 
 ## URLs
-- Store: http://137.184.53.98/
-- Dashboard: http://137.184.53.98/dashboard
+- Store: http://cybersucesstore.shop/
+- Dashboard: http://cybersucesstore.shop/dashboard
 
 ## Update Methods
 1. **Direct copy method**:
@@ -39,7 +39,7 @@ ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98 "pm2 logs commerce-dashboard"
    - Push changes to GitHub
    - Run:
    ```bash
-   ssh -i ~/.ssh/id_ed25519_github root@137.184.53.98 "cd /var/www/commerce-dashboard && ./update.sh"
+   ssh -i ~/.ssh/id_ed25519_github root@67.205.160.107 "cd /var/www/commerce-dashboard && ./update.sh"
    ```
 
 ## DigitalOcean CLI Commands
